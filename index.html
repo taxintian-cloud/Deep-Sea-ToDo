@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Deep Sea ToDo" />
+    <meta name="author" content="Nittaku-WP" />
+    <link rel="stylesheet" href="style.css">
+    <title>Deep Sea ToDo</title>
+</head>
+
+<body>
+
+    <!-- 背景の気泡レイヤー -->
+    <div class="bubble-layer"></div>
+    <div class="bubble-layer layer3"></div>
+    <div class="bubble-layer layer4"></div>
+    <div class="bubble-layer layer5"></div>
+    <div class="bubble-layer layer6"></div>
+
+    <header class="header">
+        <button id="help-btn" class="help-btn">？</button>
+    </header>
+
+    <main class="todo-container">
+        <h1 class="title">Deep Sea ToDo</h1>
+        <div class="deepsea-message" id="deepsea-message"></div>
+
+        <!-- 入力エリア（1段目） -->
+        <div class="input-area">
+            <input 
+                type="text" 
+                id="todo-input" 
+                placeholder="タスクを深海に沈める･･･"
+            />
+
+            <select id="todo-level">
+                <option value="light">浅瀬</option>
+                <option value="middle">中層</option>
+                <option value="deep">深海</option>
+            </select>
+            <input type="date" id="todo-date" />
+            <select id="todo-repeat">
+                <option value="none">繰り返しなし</option>
+                <option value="daily">毎日</option>
+                <option value="weekly">毎週</option>
+                <option value="monthly">毎月</option>
+            </select>
+
+            <button id="add-btn">追加</button>
+        </div>
+
+        <!-- 検索エリア（2段目） -->
+        <div class="search-area">
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="タスクを探す…" 
+            />
+        </div>
+
+        <ul id="todo-list" class="todo-list"></ul>
+    </main>
+    <div id="help-modal" class="help-modal">
+    <div class="help-content">
+        <h2>Deep Sea ToDo の使い方</h2>
+        <ul>
+            <li>タスクを入力して「追加」で登録できます。</li>
+            <li>カテゴリー（浅瀬・中層・深海）でタスクの深さを選べます。</li>
+            <li>日付を設定すると期限管理ができます。</li>
+            <li>検索バーでタスクを絞り込めます。</li>
+            <li>タスクはドラッグして並び替えできます。</li>
+            <li>クリックで完了、✏️で編集、✕で削除できます。</li>
+        </ul>
+        <button id="close-help" class="close-help">閉じる</button>
+    </div>
+</div>
+
+    <footer class="footer">
+       <small>©2026 Nittaku-WP</small>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

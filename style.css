@@ -1,0 +1,476 @@
+/* ================================
+   Deep Sea ToDo – Final CSS
+   Designed by 拓
+================================ */
+
+/* ---------- Root Variables ---------- */
+:root {
+    --deep-top: #004a7c;
+    --deep-mid: #00345a;
+    --deep-bottom: #001a33;
+
+    --deep-glow: rgba(0, 180, 255, 0.08);
+
+    --bubble-color: rgba(255, 255, 255, 0.12);
+
+    --core-light-1: #00eaff;
+    --core-light-2: #4dd0ff;
+    --core-light-3: #0072ff;
+
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: 12px;
+
+    --text-main: #e8f7ff;
+    --text-dim: #b5c9d6;
+
+    --shadow-core: 0 0 40px rgba(0, 150, 255, 0.25);
+    --shadow-hover: 0 0 12px rgba(0, 200, 255, 0.6);
+
+    --speed-fast: 0.2s;
+    --speed-normal: 0.3s;
+
+    --radius-s: 10px;
+    --radius-m: 12px;
+    --radius-l: 20px;
+}
+
+/* ---------- Background Layers ---------- */
+body {
+    position: relative;
+    background:
+        linear-gradient(to bottom, var(--deep-top), var(--deep-mid) 40%, var(--deep-bottom)),
+        radial-gradient(circle at 50% -20%, var(--deep-glow), transparent 40%);
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans JP", sans-serif;
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    animation-timing-function: ease-in-out;
+}
+
+body::before {
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.20) 0%, transparent 10%),
+        radial-gradient(circle at 80% 50%, rgba(255,255,255,0.18) 0%, transparent 12%);
+    animation: bubbleFloat1 22s infinite ease-in-out;
+    animation-delay: -2s;
+}
+
+body::after {
+    background:
+        radial-gradient(circle at 40% 60%, rgba(255,255,255,0.16) 0%, transparent 9%),
+        radial-gradient(circle at 70% 20%, rgba(255,255,255,0.14) 0%, transparent 11%);
+    animation: bubbleFloat2 26s infinite ease-in-out;
+    animation-delay: -9s;
+}
+
+/* Additional bubble layers */
+.bubble-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.layer3 {
+    background:
+        radial-gradient(circle at 25% 85%, rgba(255,255,255,0.20) 0%, transparent 10%),
+        radial-gradient(circle at 70% 15%, rgba(255,255,255,0.18) 0%, transparent 12%);
+    animation: bubbleFloat3 20s infinite ease-in-out;
+    animation-delay: -5s;
+}
+
+.layer4 {
+    background:
+        radial-gradient(circle at 10% 40%, rgba(255,255,255,0.22) 0%, transparent 9%),
+        radial-gradient(circle at 90% 70%, rgba(255,255,255,0.17) 0%, transparent 11%);
+    animation: bubbleFloat4 28s infinite ease-in-out;
+    animation-delay: -12s;
+}
+
+.layer5 {
+    background:
+        radial-gradient(circle at 50% 90%, rgba(255,255,255,0.25) 0%, transparent 8%),
+        radial-gradient(circle at 20% 10%, rgba(255,255,255,0.20) 0%, transparent 10%);
+    animation: bubbleFloat5 18s infinite ease-in-out;
+    animation-delay: -7s;
+}
+
+.layer6 {
+    background:
+        radial-gradient(circle at 70% 85%, rgba(255,255,255,0.24) 0%, transparent 8%),
+        radial-gradient(circle at 30% 15%, rgba(255,255,255,0.18) 0%, transparent 10%);
+    animation: bubbleFloat6 24s infinite ease-in-out;
+    animation-delay: -15s;
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes bubbleFloat1 { 0% { transform: translateY(60px); opacity: 0; } 5% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(-180px); opacity: 0; } }
+@keyframes bubbleFloat2 { 0% { transform: translateY(70px); opacity: 0; } 5% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(-190px); opacity: 0; } }
+@keyframes bubbleFloat3 { 0% { transform: translateY(65px); opacity: 0; } 5% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(-170px); opacity: 0; } }
+@keyframes bubbleFloat4 { 0% { transform: translateY(75px); opacity: 0; } 5% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(-200px); opacity: 0; } }
+@keyframes bubbleFloat5 { 0% { transform: translateY(80px); opacity: 0; } 5% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(-180px); opacity: 0; } }
+@keyframes bubbleFloat6 { 0% { transform: translateY(90px); opacity: 0; } 5% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(-210px); opacity: 0; } }
+
+/* ---------- Layout ---------- */
+main {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.todo-container {
+    width: 90%;
+    max-width: 480px;
+    padding: 6px 12px;
+    border-radius: var(--radius-l);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    box-shadow: var(--shadow-core);
+    border: 1px solid var(--glass-border);
+    position: relative;
+    z-index: 2;
+}
+
+/* ---------- Title ---------- */
+.title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, var(--core-light-2), var(--core-light-1), var(--core-light-2));
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 2px;
+}
+
+/* ---------- Input Area ---------- */
+.input-area {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+#todo-input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    font-size: 16px;
+}
+
+#add-btn {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: white;
+    cursor: pointer;
+    transition: var(--speed-fast);
+}
+
+#add-btn:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ---------- Search ---------- */
+.search-area {
+    margin-bottom: 4px;
+    position: relative;
+    z-index: 3;
+}
+
+#search-input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background: rgba(255,255,255,0.12);
+    color: var(--text-main);
+    font-size: 16px;
+    backdrop-filter: blur(6px);
+    transition: var(--speed-normal);
+}
+
+#search-input:focus {
+    background: rgba(255,255,255,0.18);
+    box-shadow: 0 0 10px rgba(0,200,255,0.4);
+}
+
+/* ---------- Deep Sea Message ---------- */
+.deepsea-message {
+    margin: 2px 0 4px;
+    padding: 4px 8px;
+    font-size: 15px;
+    color: #cfefff;
+    background: rgba(255,255,255,0.08);
+    border-left: 3px solid #4dd0ff;
+    border-radius: 8px;
+    backdrop-filter: blur(6px);
+    animation: fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Todo List ---------- */
+.todo-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 14px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    transition: var(--speed-normal);
+    border-left: 4px solid var(--core-light-1);
+}
+
+.todo-item.light { background: rgba(255,255,255,0.10); border-left-color: #4dd0ff; }
+.todo-item.middle { background: rgba(255,255,255,0.08); border-left-color: #00aaff; }
+.todo-item.deep { background: rgba(255,255,255,0.06); border-left-color: #005f99; }
+
+.todo-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 12px rgba(0, 200, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.todo-item.completed {
+    opacity: 0.6;
+    text-decoration: line-through;
+    border-left-color: #4dd0ff;
+    animation: sinkFade 0.6s ease forwards;
+}
+
+@keyframes sinkFade {
+    0% { transform: translateY(0); opacity: 1; filter: blur(0); }
+    40% { transform: translateY(6px); opacity: 0.7; filter: blur(1px); }
+    100% { transform: translateY(14px); opacity: 0; filter: blur(3px); }
+}
+
+.todo-item.dragging {
+    opacity: 0.3;
+    transform: scale(0.98);
+}
+
+/* ---------- Buttons ---------- */
+.edit-btn,
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: var(--speed-fast);
+    font-size: 18px;
+}
+
+.edit-btn {
+    color: #4dd0ff;
+    margin-right: 8px;
+}
+
+.edit-btn:hover {
+    transform: scale(1.2);
+    color: #00eaff;
+}
+
+.delete-btn {
+    color: #ff6b6b;
+}
+
+.delete-btn:hover {
+    transform: scale(1.2);
+}
+
+/* ---------- Edit Input ---------- */
+.edit-input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background: rgba(255,255,255,0.15);
+    box-shadow: 0 0 8px rgba(0, 200, 255, 0.3);
+    color: var(--text-main);
+    font-size: 16px;
+}
+
+/* ---------- Date Status ---------- */
+.expired {
+    background: rgba(0, 20, 40, 0.6);
+    border-left: 3px solid #003355;
+    color: #aac4d4;
+    opacity: 0.8;
+}
+
+.today {
+    background: rgba(80, 180, 255, 0.25);
+    border-left: 3px solid #4dc3ff;
+    color: #e8faff;
+    box-shadow: 0 0 8px rgba(80, 180, 255, 0.4);
+}
+
+/* ---------- Help Modal ---------- */
+.help-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: var(--text-main);
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: var(--speed-normal);
+}
+
+.help-btn:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+.help-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.help-content {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    color: var(--text-main);
+    animation: fadeIn 0.4s ease;
+}
+
+.close-help {
+    margin-top: 15px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    border-radius: 8px;
+    color: var(--text-main);
+    cursor: pointer;
+}
+/* ================================
+   Responsive (スマホ最適化)
+================================ */
+@media (max-width: 480px) {
+
+    /* 全体の余白調整 */
+    body {
+        padding: 12px 0;
+        align-items: center;
+    }
+
+    .todo-container {
+        width: 94%;
+        padding: 10px 14px;
+        border-radius: 16px;
+    }
+
+    /* タイトルを少し小さく */
+    .title {
+        font-size: 22px;
+        letter-spacing: 1.5px;
+        margin-bottom: 16px;
+    }
+
+    /* 入力エリアを縦並びに */
+    .input-area {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #todo-input,
+    #todo-date,
+    #todo-level,
+    #todo-repeat {
+        width: 100%;
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    #add-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    /* 検索バー */
+    #search-input {
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    /* タスクカードの密度調整 */
+    .todo-item {
+        padding: 10px 12px;
+        font-size: 15px;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        font-size: 20px;
+    }
+
+    /* DeepSeaメッセージ */
+    .deepsea-message {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+
+    /* モーダルの最適化 */
+    .help-content {
+        width: 92%;
+        padding: 16px;
+        font-size: 15px;
+    }
+
+    .close-help {
+        width: 100%;
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    /* フッターをスマホで見やすく */
+    footer.footer {
+        font-size: 13px;
+        padding: 10px 0;
+    }
+}
