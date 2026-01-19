@@ -1,4 +1,7 @@
 # 🌊 Deep Sea ToDo  
+
+公開ページはこちら⇒https://taxintian-cloud.github.io/Deep-Sea-ToDo/
+
 深海の静けさと光のゆらぎをテーマにした、幻想的な ToDo アプリです。  
 タスク管理を「深海に沈める」ような感覚で楽しめる、世界観重視の作品です。
 
